@@ -127,11 +127,13 @@ namespace ImageProcessingLesson
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Right;
             this.trackBar1.Location = new System.Drawing.Point(7, 0);
             this.trackBar1.Maximum = 100;
+            this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar1.Size = new System.Drawing.Size(45, 446);
             this.trackBar1.TabIndex = 0;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trackBar1.Value = 1;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // contentsToolStripMenuItem

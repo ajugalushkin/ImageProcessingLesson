@@ -13,7 +13,7 @@ namespace ImageProcessingLesson
 {
     public partial class Form1 : Form
     {
-        private List<Bitmap> _bitmaps;
+        private List<Bitmap> _bitmaps = new List<Bitmap>();
         private Random _random = new Random();
         public Form1()
         {
@@ -27,7 +27,7 @@ namespace ImageProcessingLesson
                 var sw = Stopwatch.StartNew();
                 menuStrip1.Enabled = trackBar1.Enabled = false;
                 pictureBox1.Image = null;
-                //_bitmaps.Clear();
+                _bitmaps.Clear();
                 var bitmap = new Bitmap(openFileDialog1.FileName);
                 await Task.Run(() => { RunProcessing(bitmap); });
                 menuStrip1.Enabled = trackBar1.Enabled = true;
@@ -51,9 +51,11 @@ namespace ImageProcessingLesson
                     pixels.RemoveAt(index);
                 }
                 var currentBitmap = new Bitmap(bitmap.Width, bitmap.Height);
+
                 foreach (var pixel in currentPixelsSet)
                     currentBitmap.SetPixel(pixel.Point.X, pixel.Point.Y, pixel.Color);
-                _bitmaps.Add(bitmap);
+                _bitmaps.Add(currentBitmap);
+
                 this.Invoke(new Action(() =>
                 {
                     Text = $"{i}%";
@@ -77,7 +79,6 @@ namespace ImageProcessingLesson
                 }
             }
             return pixels;
-
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
